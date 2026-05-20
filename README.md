@@ -2,27 +2,27 @@
 
 Simple PostgreSQL 18 High Availability (HA) Proof of Concept using:
 
-* PostgreSQL 18
-* Docker Compose
-* WSL2 Ubuntu
-* Streaming Replication
-* Manual Failover
+- PostgreSQL 18
+- Docker Compose
+- WSL2 Ubuntu
+- Streaming Replication
+- Manual Failover
 
 This PoC is designed for learning PostgreSQL replication concepts without:
 
-* Patroni
-* Kubernetes
-* Docker Swarm
-* Docker Desktop
-* Cloud Infrastructure
+- Patroni
+- Kubernetes
+- Docker Swarm
+- Docker Desktop
+- Cloud Infrastructure
 
 Focus area of this PoC:
 
-* Docker container behavior during replication
-* PostgreSQL WAL streaming
-* Manual failover concepts
-* Standby promotion
-* Multi-standby architecture
+- Docker container behavior during replication
+- PostgreSQL WAL streaming
+- Manual failover concepts
+- Standby promotion
+- Multi-standby architecture
 
 ---
 
@@ -36,35 +36,33 @@ Focus area of this PoC:
               Docker Compose
                      |
         -------------------------------------------------
-        |               |               |               |    
+        |               |               |               |
     pg-primary      pg-standby1     pg-standby2     pg-standby3
-        
-    
+
 Streaming Replication:
-PRIMARY  --->  STANDBY1
-PRIMARY  --->  STANDBY2
-PRIMARY  --->  STANDBY3
+
+pg-primary  --->  pg-standby1
+pg-primary  --->  pg-standby2
+pg-primary  --->  pg-standby3
 ```
 
 ---
 
 # Environment
 
-| Component   | Version               |
-| ----------- | --------------------- |
-| Windows     | Windows 11            |
-| WSL         | WSL2 Ubuntu           |
-| Docker      | Docker Engine         |
-| PostgreSQL  | PostgreSQL 18         |
+| Component | Version |
+|---|---|
+| Windows | Windows 11 |
+| WSL | WSL2 Ubuntu |
+| Docker | Docker Engine |
+| PostgreSQL | PostgreSQL 18 |
 | Replication | Streaming Replication |
 
 ---
 
 # STEP 1 — Install Docker Compose
 
-Ubuntu packages may not include newer Docker Compose plugin support.
-
-Install classic docker-compose:
+Install docker-compose:
 
 ```bash
 sudo apt update
@@ -418,14 +416,6 @@ cp -r standby_base/standby/* standby3/
 
 # STEP 15 — Fix Ownership
 
-Very important.
-
-Docker PostgreSQL container uses internal UID/GID.
-
-Without this step, containers may fail with permission errors.
-
-Run:
-
 ```bash
 sudo chown -R 999:999 standby1
 sudo chown -R 999:999 standby2
@@ -633,18 +623,18 @@ SUCCESS.
 
 # Important Concepts Learned
 
-| Concept               | Description                   |
-| --------------------- | ----------------------------- |
-| Docker Compose        | Multi-container orchestration |
-| Streaming Replication | WAL-based replication         |
-| WAL Sender            | Primary sends WAL             |
-| WAL Receiver          | Standby receives WAL          |
-| pg_basebackup         | Physical standby creation     |
-| standby.signal        | Enables standby mode          |
-| pg_stat_replication   | Monitor replication           |
-| pg_ctl promote        | Promote standby               |
-| pg_is_in_recovery()   | Identify primary/standby      |
-| Manual Failover       | Promote standby manually      |
+| Concept | Description |
+|---|---|
+| Docker Compose | Multi-container orchestration |
+| Streaming Replication | WAL-based replication |
+| WAL Sender | Primary sends WAL |
+| WAL Receiver | Standby receives WAL |
+| pg_basebackup | Physical standby creation |
+| standby.signal | Enables standby mode |
+| pg_stat_replication | Monitor replication |
+| pg_ctl promote | Promote standby |
+| pg_is_in_recovery() | Identify primary/standby |
+| Manual Failover | Promote standby manually |
 
 ---
 
@@ -652,19 +642,21 @@ SUCCESS.
 
 This PoC demonstrates:
 
-* PostgreSQL streaming replication
-* Multi-standby architecture
-* Docker container behavior
-* WAL shipping
-* Read-only standby
-* Manual failover
-* Standby promotion
-* Docker Compose orchestration
-* PostgreSQL 18 container storage behavior
+- PostgreSQL streaming replication
+- Multi-standby architecture
+- Docker container behavior
+- WAL shipping
+- Read-only standby
+- Manual failover
+- Standby promotion
+- Docker Compose orchestration
+- PostgreSQL 18 container storage behavior
 
 without using:
 
-* Patroni
-* Kubernetes
-* Docker Swarm
-* Cloud HA tools
+- Patroni
+- Kubernetes
+- Docker Swarm
+- Cloud HA tools
+
+This is an excellent beginner-friendly PostgreSQL HA learning environment.
