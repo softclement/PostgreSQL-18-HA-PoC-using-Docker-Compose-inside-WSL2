@@ -659,4 +659,60 @@ without using:
 - Docker Swarm
 - Cloud HA tools
 
-This is an excellent beginner-friendly PostgreSQL HA learning environment.
+# Cleanup Complete PoC
+
+Stop and remove all containers:
+
+```bash
+docker-compose down
+```
+
+Verify:
+
+```bash
+docker ps
+```
+
+Remove PostgreSQL Docker images (optional):
+
+```bash
+docker rmi postgres:18
+```
+
+Remove project folders:
+
+```bash
+cd ~
+
+rm -rf ~/pg-ha-compose
+```
+
+Remove unused Docker resources:
+
+```bash
+docker system prune -a
+```
+
+Remove unused Docker volumes:
+
+```bash
+docker volume prune
+```
+
+Verify cleanup:
+
+```bash
+docker ps -a
+
+docker images
+
+docker volume ls
+```
+
+Expected:
+
+```text
+No PostgreSQL containers
+No PostgreSQL images
+No unused volumes
+```
