@@ -684,7 +684,7 @@ Remove project folders:
 ```bash
 cd ~
 
-rm -rf ~/pg-ha-compose
+sudo rm -rf ~/pg-ha-compose
 ```
 
 Remove unused Docker resources:
