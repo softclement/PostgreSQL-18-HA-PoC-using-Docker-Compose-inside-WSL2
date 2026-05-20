@@ -35,12 +35,11 @@ Focus area of this PoC:
                      |
               Docker Compose
                      |
-        ---------------------------------
-        |               |               |
-    pg-primary      pg-standby1     pg-standby2
-        |
-    pg-standby3
-
+        -------------------------------------------------
+        |               |               |               |    
+    pg-primary      pg-standby1     pg-standby2     pg-standby3
+        
+    
 Streaming Replication:
 PRIMARY  --->  STANDBY1
 PRIMARY  --->  STANDBY2
