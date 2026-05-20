@@ -405,11 +405,11 @@ mkdir standby3
 # STEP 14 — Copy Base Backup To All Standbys
 
 ```bash
-cp -r standby_base/standby/* standby1/
+cp -r standby_base/* standby1/
 
-cp -r standby_base/standby/* standby2/
+cp -r standby_base/* standby2/
 
-cp -r standby_base/standby/* standby3/
+cp -r standby_base/* standby3/
 ```
 
 ---
